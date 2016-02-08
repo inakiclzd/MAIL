@@ -48,6 +48,54 @@ public class JediTest extends TestCase
 		testAcquisitionSabre(sab,anakin);
 	}
 	
+	@Test
+	public void testGetCouleur() throws WrongColorException {
+		Sabre s = new Sabre("bleu");
+		assertEquals(s.getCouleur(), "bleu");
+	}
+	
+	@Test
+	public void testGetProprietaire() throws WrongColorException, DuplicateNameException {
+		Sabre s = new Sabre("bleu");
+		assertNull(s.getProprietaire());
+		Jedi anakin2 = new Jedi("Anakin2");
+		s.setProprietaire(anakin2);
+		assertEquals(s.getProprietaire(), anakin2);
+	}
+	
+	@Test
+	public void testGetNom() throws DuplicateNameException {
+		Jedi anakin3 = new Jedi("Anakin3");
+		assertEquals(anakin3.getNom(), "Anakin3");
+	}
+	
+	@Test
+	public void testGetNiveau() throws DuplicateNameException {
+		Jedi anakin4 = new Jedi("Anakin4");
+		assertEquals(anakin4.getNiveau(), 1);
+	}
+	
+	@Test
+	public void testGetSabres() throws DuplicateNameException {
+		Jedi anakin5 = new Jedi("Anakin5");
+		assertEquals(anakin5.getSabres().size(), 0);
+	}
+	
+	@Test
+	public void testJedi() throws DuplicateNameException {
+		Jedi anakin6 = new Jedi("Anakin6");
+		assertEquals(anakin6.getNiveau(), 1);
+		assertEquals(anakin6.getNom(), "Anakin6");
+		assertEquals(anakin6.getSabres().size(), 0);
+	}
+	
+	@Test
+	public void testSabre() throws WrongColorException {
+		Sabre s = new Sabre("bleu");
+		assertEquals(s.getCouleur(), "bleu");
+		assertNull(s.getProprietaire());
+	}
+	
 	private void testAcquisitionSabre(Sabre sab, Jedi jed) {
 		assertTrue(jed.getSabres().contains(sab));
 		assertEquals(jed.getNiveau(), 2);
