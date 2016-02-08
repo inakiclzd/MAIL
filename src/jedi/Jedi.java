@@ -15,13 +15,18 @@ public class Jedi
     private String nom;
     private int niveau;
     private Set<Sabre> sabres;
+    private static Set<String> noms = new HashSet<>();
     
 
     /**
      * Constructor for objects of class Jedi
      */
-    public Jedi(String nom)
+    public Jedi(String nom) throws DuplicateNameException
     {
+    	if (noms.contains(nom)) {
+    		throw new DuplicateNameException();
+    	}
+    	noms.add(nom);
         this.nom = nom;
         this.niveau = 1;
         sabres=new HashSet<Sabre>();
@@ -47,8 +52,8 @@ public class Jedi
     	sabres.remove(s);
     }
     
-    public int levelUp() {
-        return ++this.niveau;
+    public void levelUp() {
+        ++this.niveau;
     }
     
 }
