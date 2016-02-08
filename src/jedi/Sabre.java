@@ -1,4 +1,9 @@
 package jedi;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Write a description of class Sabre here.
  * 
@@ -10,13 +15,17 @@ public class Sabre
     // instance variables - replace the example below with your own
     private String couleur;
     private Jedi proprietaire;
+    private static Set<String> couleurs = new HashSet<>(Arrays.asList("bleu", "vert", "rouge", "jaune", "violet"));
 
     /**
      * Constructor for objects of class Sabre
      */
-    public Sabre(String couleur)
-    {
-        this.couleur = couleur;
+    public Sabre(String couleur) throws WrongColorException {
+    	if (couleurs.contains(couleur)) {
+    		this.couleur = couleur;
+    	} else {
+    		throw new WrongColorException();
+    	}
     }
 
     public String getCouleur() {
