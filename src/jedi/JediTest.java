@@ -17,13 +17,25 @@ public class JediTest extends TestCase
 	}
 	
 	@Test
-	public void testLevelUp() {
-		Jedi luke = new Jedi("Luke");
-		assertEquals(luke.levelUp(), 2);
+	public void testUniciteNom() throws DuplicateNameException {
+		Jedi obiwan1 = new Jedi("Obiwan");
+		try {
+			Jedi obiwan2 = new Jedi("Obiwan");
+	        fail("Devrait retourner une exception de duplication de nom.");
+	    } catch (Exception e) {
+	    	assertTrue(e instanceof DuplicateNameException);
+	    }
+	}
+	
+	@Test
+	public void testLevelUp() throws DuplicateNameException {
+		Jedi yoda = new Jedi("Yoda");
+		yoda.levelUp();
+		assertEquals(yoda.getNiveau(), 2);
 	}
 
 	@Test
-	public void testProprietaire() throws WrongColorException {
+	public void testProprietaire() throws WrongColorException, DuplicateNameException {
 		Sabre sab = new Sabre("bleu");
 		Jedi luke = new Jedi("Luke");
 		
