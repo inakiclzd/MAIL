@@ -31,16 +31,21 @@ public class Sabre
     public String getCouleur() {
         return this.couleur;
     }
-    
+
     public Jedi getProprietaire() {
         return this.proprietaire;
     }
-    
-    public void setProprietaire(Jedi propJedi) {
-    	if(this.proprietaire!=null)
-    		this.proprietaire.removeSabre(this);
-        this.proprietaire = propJedi;
-        propJedi.addSabre(this);
-        propJedi.levelUp();
+
+    public void setProprietaire(Jedi jedi) {
+    	if (jedi == null || (this.proprietaire != null && this.proprietaire.getNom() == jedi.getNom())) {
+    		this.proprietaire = jedi;
+    	} else {
+    		if (this.proprietaire != null) {
+        		this.getProprietaire().removeSabre(this);
+        	}
+    		this.proprietaire = jedi;
+            jedi.addSabre(this);
+            jedi.levelUp();
+    	}
     }
 }

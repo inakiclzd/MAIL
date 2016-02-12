@@ -39,12 +39,12 @@ public class JediTest extends TestCase {
 		Jedi luke = new Jedi("Luke");
 		
 		sab.setProprietaire(luke);
-		testAcquisitionSabre(sab,luke);
+		testAcquisitionSabre(sab, luke);
 		
 		Jedi anakin = new Jedi("Anakin");
 		sab.setProprietaire(anakin);
 		assertFalse(luke.getSabres().contains(sab));
-		testAcquisitionSabre(sab,anakin);
+		testAcquisitionSabre(sab, anakin);
 	}
 	
 	@Test

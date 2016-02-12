@@ -57,6 +57,12 @@ public class VoyageurGalactiqueTest extends TestCase {
 		assertEquals(vg.getJedi().getNom(), "Anakin");
 	}
 	
-	
+	@Test
+	public void testReserverErro() throws DuplicateNameException {
+		Billet b = new Billet(100);
+		VoyageurGalactique vg = new VoyageurGalactique(new Jedi("Rey"));
+		vg.reserver(b);
+		assertFalse(vg.reserver(b));
+	}
 
 }

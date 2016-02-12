@@ -12,7 +12,7 @@ public class BilletTest {
 	@Test
 	public void testGetNumeroBillet() {
 		Billet b = new Billet(100);
-		assertEquals(b.getNumeroBillet(), 1);
+		assertEquals(b.getNumeroBillet(), 2);
 	}
 	
 	@Test
@@ -35,12 +35,13 @@ public class BilletTest {
 		assertEquals(b.getPrix(), 300);
 	}
 	
+	// Test également une partie de "reserver"
 	@Test
 	public void testGetVoyageur() {
 		Billet b = new Billet(100);
 		Voyageur v = new Voyageur();
 		v.reserver(b);
-		assertEquals(b.getVoyageur().getCodeVoyageur(), 4);
+		assertEquals(b.getVoyageur().getCodeVoyageur(), 5);
 	}
 	
 	@Test
@@ -49,7 +50,7 @@ public class BilletTest {
 		Voyageur v = new Voyageur();
 		v.reserver(b);
 		b.setVoyageur(new Voyageur());
-		assertEquals(b.getVoyageur().getCodeVoyageur(), 3);
+		assertEquals(b.getVoyageur().getCodeVoyageur(), 4);
 	}
 	
 	@Test
@@ -57,6 +58,20 @@ public class BilletTest {
 		Voyageur v = new Voyageur();
 		v.setCodeVoyageur(100);
 		assertEquals(v.getCodeVoyageur(), 100);
+	}
+	
+	@Test
+	public void testReserverErreur() {
+		Voyageur v = new Voyageur();
+		Billet b = new Billet(100);
+		v.reserver(b);
+		assertFalse(v.reserver(b));
+	}
+	
+	@Test
+	public void testGetBillets() {
+		Voyageur v = new Voyageur();
+		assertEquals(v.getBillets().size(), 0);
 	}
 
 }

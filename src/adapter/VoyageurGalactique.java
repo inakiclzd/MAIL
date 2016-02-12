@@ -15,7 +15,7 @@ public class VoyageurGalactique extends Voyageur {
 		if (b.getVoyageur() == null) {
 			b.setVoyageur(this);
 			b.setPrix(b.getPrix() + 100 * getJedi().getSabres().size());
-			this.getBillets().add(b);
+			this.addBillet(b);
 			return true;
 		}
 		return false;

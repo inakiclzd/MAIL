@@ -1,6 +1,8 @@
 package billet;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Voyageur {
     private int codeVoyageur;
@@ -9,7 +11,7 @@ public class Voyageur {
     
     public Voyageur() {
     	this.codeVoyageur = code++;
-    	this.setBillets(new ArrayList<>());
+    	this.billets = new ArrayList<>();
     }
 
     public int getCodeVoyageur() {
@@ -20,18 +22,18 @@ public class Voyageur {
         this.codeVoyageur = codeV;
     }
 
-	public ArrayList<Billet> getBillets() {
-		return billets;
+	public List<Billet> getBillets() {
+		return Collections.unmodifiableList(billets);
 	}
-
-	public void setBillets(ArrayList<Billet> billets) {
-		this.billets = billets;
+	
+	protected void addBillet(Billet b) {
+		this.billets.add(b);
 	}
 	
 	public boolean reserver(Billet b) {
 		if (b.getVoyageur() == null) {
 			b.setVoyageur(this);
-			this.getBillets().add(b);
+			this.addBillet(b);
 			return true;
 		}
 		return false;

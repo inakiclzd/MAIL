@@ -1,5 +1,6 @@
 package jedi;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class Jedi
     	noms.add(nom);
         this.nom = nom;
         this.niveau = 1;
-        sabres=new HashSet<Sabre>();
+        sabres = new HashSet<Sabre>();
     }
 
     public String getNom() {
@@ -41,15 +42,19 @@ public class Jedi
     }
     
     public Set<Sabre> getSabres() {
-    	return this.sabres;
+    	return Collections.unmodifiableSet(this.sabres);
     }
     
     public void addSabre(Sabre s) {
-    	sabres.add(s);
+    	if (!this.sabres.contains(s)) {
+    		this.sabres.add(s);
+    		s.setProprietaire(this);
+    	}
     }
     
     public void removeSabre(Sabre s) {
     	sabres.remove(s);
+    	s.setProprietaire(null);
     }
     
     public void levelUp() {
